@@ -1,13 +1,24 @@
 class FixedSavings {
   /// savings for stuff like TV, consoles, furniture, ecc..
-  int normalSavings;
+  int? normalSavings;
 
   /// long term savings (car, houses, ecc...)
-  int importantSavings;
+  int? importantSavings;
 
-  FixedSavings({required this.normalSavings, required this.importantSavings});
+  FixedSavings({this.normalSavings, this.importantSavings});
 
   int getTotal() {
-    return normalSavings + importantSavings;
+    int total = (normalSavings ?? 0) + (importantSavings ?? 0);
+    return total;
   }
+
+  Map<String, dynamic> toJson() => {
+        'normalSavings': normalSavings,
+        'importantSavings': importantSavings,
+      };
+
+  factory FixedSavings.fromJson(Map<String, dynamic> json) => FixedSavings(
+        normalSavings: json['normalSavings'],
+        importantSavings: json['importantSavings'],
+      );
 }

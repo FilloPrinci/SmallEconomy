@@ -1,27 +1,47 @@
 class FixedExpense {
   /// Home mortgage or rent
-  int fixedHousing;
+  int? fixedHousing;
 
   /// gas, water and electricity costs
-  int fixedHomeExpense;
+  int? fixedHomeExpense;
 
   /// food costs
-  int fixedFoodExpense;
+  int? fixedFoodExpense;
 
   /// internet, netflix, ecc...
-  int fixedOtherServices;
+  int? fixedOtherServices;
 
   /// a fixed expense that is calculated per year
-  int annualFixedExpense;
+  int? annualFixedExpense;
 
   FixedExpense(
-      {required this.fixedHomeExpense,
-      required this.fixedHousing,
-      required this.fixedFoodExpense,
-      required this.annualFixedExpense,
-      required this.fixedOtherServices});
+      {this.fixedHomeExpense = 0,
+      this.fixedHousing = 0,
+      this.fixedFoodExpense = 0,
+      this.annualFixedExpense = 0,
+      this.fixedOtherServices = 0});
 
   int getTotal() {
-    return fixedHousing + fixedHomeExpense + fixedFoodExpense + (annualFixedExpense ~/ 12) + fixedOtherServices;
+    int total = (fixedHousing ?? 0) +
+        (fixedHomeExpense ?? 0) +
+        (fixedFoodExpense ?? 0) +
+        ((annualFixedExpense ?? 0) ~/ 12) +
+        (fixedOtherServices ?? 0);
+    return total;
   }
+
+  Map<String, dynamic> toJson() => {
+        'fixedHousing': fixedHousing,
+        'fixedHomeExpense': fixedHomeExpense,
+        'fixedFoodExpense': fixedFoodExpense,
+        'fixedOtherServices': fixedOtherServices,
+        'annualFixedExpense': annualFixedExpense
+      };
+
+  factory FixedExpense.fromJson(Map<String, dynamic> json) => FixedExpense(
+      fixedHousing: json['fixedHousing'],
+      fixedHomeExpense: json['fixedHomeExpense'],
+      fixedFoodExpense: json['fixedFoodExpense'],
+      fixedOtherServices: json['fixedOtherServices'],
+      annualFixedExpense: json['annualFixedExpense']);
 }

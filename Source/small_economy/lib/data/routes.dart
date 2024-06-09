@@ -6,10 +6,11 @@ class Routes {
   static const String initial = '/';
   static const String addEconomyConfiguration = '/addEconomyConfiguration';
 
-  static Map<String, Widget Function(BuildContext)> getAppRoutes(BuildContext context) {
+  static Map<String, Widget Function(BuildContext)> getAppRoutes(
+      BuildContext context) {
     return {
       Routes.initial: (context) => const Home(),
-      Routes.addEconomyConfiguration: (context) => const AddEconomyConfiguration(),
+      Routes.addEconomyConfiguration: (context) => AddEconomyConfiguration(),
     };
   }
 }

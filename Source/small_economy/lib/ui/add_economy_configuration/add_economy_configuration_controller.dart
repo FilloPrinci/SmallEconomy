@@ -120,6 +120,8 @@ class AddEconomyConfigurationController {
           AppData.economyConfigurations ?? [];
       currentConfigurations.add(newConfiguration!);
 
+      AppData.economyConfigurations = currentConfigurations;
+
       List<Map<String, dynamic>> configurationsJsons =
           List<Map<String, dynamic>>.empty(growable: true);
 

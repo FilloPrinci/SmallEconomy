@@ -28,6 +28,26 @@ class _Home extends State<Home> {
     return widgets;
   }
 
+  List<Widget> getEconomyConfigs() {
+    List<Widget> widgets = List<Widget>.empty(growable: true);
+
+    Widget verticalSpacer = SizedBox(
+      height: 10,
+    );
+
+    if (AppData.economyConfigurations != null &&
+        AppData.economyConfigurations!.isNotEmpty) {
+      List<EconomyConfiguration> economyConfigurations =
+          AppData.economyConfigurations!;
+      for (int i = 0; i < economyConfigurations.length; i++) {
+        widgets.add(ConfigurationCard(context, economyConfigurations[i]));
+        widgets.add(verticalSpacer);
+      }
+    }
+
+    return widgets;
+  }
+
   @override
   Widget build(BuildContext context) {
     print('Home build()');
@@ -43,24 +63,4 @@ class _Home extends State<Home> {
           )),
     );
   }
-}
-
-List<Widget> getEconomyConfigs() {
-  List<Widget> widgets = List<Widget>.empty(growable: true);
-
-  Widget verticalSpacer = SizedBox(
-    height: 10,
-  );
-
-  if (AppData.economyConfigurations != null &&
-      AppData.economyConfigurations!.isNotEmpty) {
-    List<EconomyConfiguration> economyConfigurations =
-        AppData.economyConfigurations!;
-    for (int i = 0; i < economyConfigurations.length; i++) {
-      widgets.add(ConfigurationCard(economyConfigurations[i]));
-      widgets.add(verticalSpacer);
-    }
-  }
-
-  return widgets;
 }
